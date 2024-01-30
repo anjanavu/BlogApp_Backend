@@ -50,7 +50,7 @@ function verifytoken(req, res, next) {
         }
     } catch (error) {
         console.error('Error during login:', error);
-        res.status(500).send(error);
+        res.status(500).send({error:"int"});
     }
 });
 

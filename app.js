@@ -12,7 +12,7 @@ require('dotenv').config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-
+app.use(express.static(path.join(__dirname,'/build')));
 require("./db/connect");
 
 const signrouter=require('./routes/signupdata');
@@ -22,7 +22,9 @@ const postrouter=require('./routes/postdata');
 app.use('/blog',postrouter);
 
 
-
+app.get('/*',function(req,res){
+  res.sendFile(path.join(__dirname,'/build/index.html'));
+})
 
   
   const PORT = process.env.PORT;
